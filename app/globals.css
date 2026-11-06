@@ -1,0 +1,501 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-heading: var(--font-sans);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+
+  /* Brand slots. Flyte purple is the brand; PayPal blue is the accent. */
+  --color-flyte: var(--flyte);
+  --color-flyte-text: var(--flyte-text);
+  --color-pal: var(--pal);
+  --color-pal-text: var(--pal-text);
+  --color-pal-deep: var(--pal-deep);
+  --color-surface: var(--surface);
+  --color-surface-strong: var(--surface-strong);
+  --color-hairline: var(--hairline);
+  --color-success: var(--success);
+  --color-pp-navy: var(--pp-navy);
+  --color-pp-blue: var(--pp-blue);
+  --color-pp-sky: var(--pp-sky);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  --radius: 0.75rem;
+  --background: #f6f7fb;
+  --foreground: #0b1020;
+  --card: #ffffff;
+  --card-foreground: #0b1020;
+  --popover: #ffffff;
+  --popover-foreground: #0b1020;
+  --primary: #0b1020;
+  --primary-foreground: #ffffff;
+  --secondary: #eceef5;
+  --secondary-foreground: #0b1020;
+  --muted: #eceef5;
+  /* 5.1:1 on --background, 5.5:1 on white. */
+  --muted-foreground: #5b6275;
+  --accent: #e9ecf6;
+  --accent-foreground: #0b1020;
+  --destructive: #d92d20;
+  --border: #dfe2ec;
+  --input: #d6dae6;
+  --ring: #0070e0;
+
+  --flyte: #9089fc;
+  /* #9089fc fails as text on white (2.9:1); this is 4.6:1 and the same hue. */
+  --flyte-text: #6d63e6;
+  --pal: #0070e0;
+  /* 4.9:1 on white. */
+  --pal-text: #005ec2;
+  --pal-deep: #003087;
+  --surface: rgb(255 255 255 / 0.72);
+  --surface-strong: rgb(255 255 255 / 0.92);
+  --hairline: rgb(11 16 32 / 0.08);
+  --success: #12805c;
+  /* PayPal's blues, used only as motion accents around the payment moments. */
+  --pp-navy: #003087;
+  --pp-blue: #0070e0;
+  --pp-sky: #009cde;
+  --pp-wave: linear-gradient(100deg, transparent 0%, rgb(0 48 135 / 0.16) 25%, rgb(0 112 224 / 0.22) 50%, rgb(0 156 222 / 0.16) 75%, transparent 100%);
+  --glow-a: rgb(0 112 224 / 0.16);
+  --glow-b: rgb(144 137 252 / 0.18);
+  --dot: rgb(11 16 32 / 0.09);
+  --shadow-float: 0 1px 0 rgb(255 255 255 / 0.9) inset, 0 24px 60px -28px rgb(0 48 135 / 0.28),
+    0 2px 6px -2px rgb(11 16 32 / 0.08);
+}
+
+.dark {
+  --background: #060914;
+  --foreground: #eef1fa;
+  --card: #0d1222;
+  --card-foreground: #eef1fa;
+  --popover: #0d1222;
+  --popover-foreground: #eef1fa;
+  --primary: #eef1fa;
+  --primary-foreground: #060914;
+  --secondary: #151b2e;
+  --secondary-foreground: #eef1fa;
+  --muted: #151b2e;
+  /* 7.4:1 on --background. */
+  --muted-foreground: #9aa3bb;
+  --accent: #182038;
+  --accent-foreground: #eef1fa;
+  --destructive: #ff6b5e;
+  --border: rgb(255 255 255 / 0.09);
+  --input: rgb(255 255 255 / 0.14);
+  --ring: #4aa3ff;
+
+  --flyte: #9089fc;
+  --flyte-text: #aaa5ff;
+  --pal: #3d9bff;
+  --pal-text: #6fb4ff;
+  --pal-deep: #0b2a66;
+  --surface: rgb(13 18 34 / 0.66);
+  --surface-strong: rgb(13 18 34 / 0.9);
+  --hairline: rgb(255 255 255 / 0.07);
+  --success: #3ccf97;
+  --pp-navy: #2a5bd7;
+  --pp-blue: #3d9bff;
+  --pp-sky: #4cc3f5;
+  --pp-wave: linear-gradient(100deg, transparent 0%, rgb(42 91 215 / 0.22) 25%, rgb(61 155 255 / 0.26) 50%, rgb(76 195 245 / 0.18) 75%, transparent 100%);
+  --glow-a: rgb(61 155 255 / 0.18);
+  --glow-b: rgb(144 137 252 / 0.2);
+  --dot: rgb(255 255 255 / 0.07);
+  /* On dark an object reads through a lighter rim and a specular top edge. */
+  --shadow-float: 0 1px 0 rgb(255 255 255 / 0.06) inset, 0 0 0 1px rgb(255 255 255 / 0.04),
+    0 30px 70px -30px rgb(0 0 0 / 0.8);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-background text-foreground;
+    background-color: var(--background);
+    overflow-x: clip;
+  }
+  ::selection {
+    background: color-mix(in oklab, var(--pal) 28%, transparent);
+  }
+}
+
+/* ---------- Texture and surfaces ---------- */
+
+.dot-field {
+  background-image: radial-gradient(var(--dot) 1px, transparent 1px);
+  background-size: 22px 22px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black 40%, transparent 100%);
+}
+
+.glow-field {
+  background:
+    radial-gradient(40rem 26rem at 78% 18%, var(--glow-a), transparent 70%),
+    radial-gradient(34rem 24rem at 12% 70%, var(--glow-b), transparent 70%);
+}
+
+.float-card {
+  background: var(--surface-strong);
+  box-shadow: var(--shadow-float);
+  border: 1px solid var(--hairline);
+}
+
+.glass {
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  backdrop-filter: saturate(140%) blur(14px);
+  -webkit-backdrop-filter: saturate(140%) blur(14px);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Perforated edge for the boarding pass. */
+.perforation {
+  background-image: radial-gradient(circle, var(--background) 3.5px, transparent 4px);
+  background-size: 14px 10px;
+  background-repeat: repeat-x;
+  background-position: center;
+}
+
+/* Shimmer on in-progress stage text. Transform-only. */
+.shimmer-text {
+  position: relative;
+  overflow: hidden;
+}
+
+/* ---------- Landing sky: dawn in light, night in dark ---------- */
+
+.sky-layer {
+  background:
+    radial-gradient(42% 38% at 78% 22%, rgb(255 214 186 / 0.55), transparent 70%),
+    radial-gradient(38% 34% at 20% 30%, rgb(196 214 255 / 0.7), transparent 70%),
+    radial-gradient(50% 40% at 60% 85%, rgb(144 137 252 / 0.14), transparent 70%),
+    linear-gradient(180deg, #e9f0ff 0%, var(--background) 62%);
+}
+.dark .sky-layer {
+  background:
+    radial-gradient(40% 36% at 80% 18%, rgb(61 155 255 / 0.18), transparent 70%),
+    radial-gradient(36% 30% at 18% 36%, rgb(144 137 252 / 0.2), transparent 70%),
+    radial-gradient(60% 40% at 50% 100%, rgb(11 42 102 / 0.5), transparent 75%),
+    linear-gradient(180deg, #050816 0%, #0a1230 45%, var(--background) 85%);
+}
+
+/* Hover depth on the hero card, driven by --rx / --ry from the pointer. */
+.tilt {
+  transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* The airmail edge on "Why we built this": brand stripes, static. */
+.airmail {
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--flyte) 0 14px,
+    transparent 14px 22px,
+    var(--pal) 22px 36px,
+    transparent 36px 44px
+  );
+  box-shadow: var(--shadow-float);
+}
+
+/* ---------- PayPal moments: navy into bright blue ---------- */
+
+.pp-bar {
+  background: linear-gradient(90deg, var(--pp-navy), var(--pp-blue) 55%, var(--pp-sky));
+}
+
+/* The checkout waiting for approval: a soft blue glow around the panel. */
+.pp-await {
+  position: relative;
+  border-radius: 1rem;
+}
+.pp-await::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(120deg, var(--pp-navy), var(--pp-blue), var(--pp-sky));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.55;
+  pointer-events: none;
+}
+.pp-await::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: calc(1rem + 6px);
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--pp-blue) 25%, transparent), 0 0 28px -4px color-mix(in oklab, var(--pp-blue) 45%, transparent);
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+/* The runway the plane taxis along while the booking goes through. */
+.runway {
+  container-type: inline-size;
+  position: relative;
+  overflow: hidden;
+}
+.runway-plane {
+  position: absolute;
+  left: 4%;
+  bottom: 10px;
+}
+.runway[data-phase="takeoff"] .runway-plane {
+  animation: takeoff 1s cubic-bezier(0.55, 0, 0.75, 0.25) forwards;
+}
+
+/* ---------- Theme toggle: sun into moon, transforms only ---------- */
+
+.theme-toggle .tt-core,
+.theme-toggle .tt-rays,
+.theme-toggle .tt-bite {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 520ms cubic-bezier(0.22, 1, 0.36, 1), opacity 300ms ease;
+}
+.theme-toggle .tt-rays {
+  transform-box: view-box;
+  transform-origin: 12px 12px;
+}
+.dark .theme-toggle .tt-core {
+  transform: scale(1.7);
+}
+.dark .theme-toggle .tt-rays {
+  transform: rotate(45deg) scale(0.4);
+  opacity: 0;
+}
+.dark .theme-toggle .tt-bite {
+  transform: translate(-7px, 5px);
+}
+
+/* ---------- Route view transitions (React <ViewTransition>) ---------- */
+
+::view-transition-old(.page-exit) {
+  animation: 180ms ease-in both vt-fade-out;
+}
+::view-transition-new(.page-enter) {
+  animation: 420ms cubic-bezier(0.22, 1, 0.36, 1) both vt-rise;
+}
+::view-transition-group(.morph) {
+  animation-duration: 520ms;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes vt-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes vt-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+/* ---------- Every CSS loop lives here, so reduced motion is one grep ---------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  html:not([data-rm]) .loop-pulse {
+    animation: pulse-ring 2.4s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  }
+  html:not([data-rm]) .loop-shimmer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      100deg,
+      transparent 20%,
+      color-mix(in oklab, var(--background) 70%, transparent) 50%,
+      transparent 80%
+    );
+    transform: translateX(-100%);
+    animation: shimmer 1.6s ease-in-out infinite;
+  }
+  html:not([data-rm]) .loop-float {
+    animation: float-y 6s ease-in-out infinite;
+  }
+  html:not([data-rm]) .loop-spin-slow {
+    animation: spin 14s linear infinite;
+  }
+  html:not([data-rm]) .loop-caret {
+    animation: caret 1s steps(1) infinite;
+  }
+  html:not([data-rm]) .loop-orb {
+    animation: orb 3.2s ease-in-out infinite;
+  }
+  html:not([data-rm]) .loop-sky {
+    animation: sky-drift 38s ease-in-out infinite alternate;
+  }
+  html:not([data-rm]) .loop-twinkle {
+    animation: twinkle 5.5s ease-in-out infinite;
+  }
+  html:not([data-rm]) .pp-await::after {
+    animation: pp-breathe 2.8s ease-in-out infinite;
+  }
+  html:not([data-rm]) .runway[data-phase="taxi"] .runway-plane {
+    animation: taxi 2.4s ease-in-out infinite;
+  }
+  html:not([data-rm]) .runway-lights > span {
+    animation: runway-light 1.4s linear infinite;
+  }
+  .reveal-on-scroll {
+    animation: reveal linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 30%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
+@keyframes shimmer {
+  to {
+    transform: translateX(100%);
+  }
+}
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes caret {
+  50% {
+    opacity: 0;
+  }
+}
+@keyframes orb {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+}
+@keyframes sky-drift {
+  from {
+    transform: translate3d(-3%, -2%, 0) scale(1);
+  }
+  to {
+    transform: translate3d(3%, 2%, 0) scale(1.06);
+  }
+}
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+@keyframes pp-breathe {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+@keyframes taxi {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(14px);
+  }
+}
+@keyframes takeoff {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 1;
+  }
+  55% {
+    transform: translate(48cqw, 0) rotate(-4deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(92cqw, -44px) rotate(-18deg);
+    opacity: 0;
+  }
+}
+@keyframes runway-light {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-28px);
+  }
+}
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
