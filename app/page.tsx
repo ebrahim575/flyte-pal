@@ -18,6 +18,23 @@ export default function Home() {
 
           <Story />
 
+          <section aria-labelledby="demo-title" className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6">
+            <h2 id="demo-title" className="text-[clamp(1.7rem,3.4vw,2.4rem)] font-semibold tracking-[-0.03em]">
+              Watch Flyte Pal
+            </h2>
+            <video
+              controls
+              playsInline
+              preload="none"
+              poster="/videos/flyte-pal-demo.jpg"
+              aria-label="Flyte Pal demo: live flight search and PayPal sandbox checkout"
+              className="mt-6 aspect-video w-full rounded-3xl border border-hairline bg-card"
+            >
+              <source src="/videos/flyte-pal-demo.mp4" type="video/mp4" />
+              <a href="/videos/flyte-pal-demo.mp4">Download the demo video</a>
+            </video>
+          </section>
+
           <section className="mx-auto w-full max-w-6xl px-4 pb-24 sm:px-6">
             <div className="reveal-on-scroll float-card mt-12 flex flex-col items-start gap-6 rounded-3xl p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
               <div className="flex gap-3">

@@ -16,12 +16,13 @@ get one clear fare card, confirm, and pay with PayPal.
 
 ## For judges
 
-1. Open the hosted app and press **Start booking**.
+1. Open https://pal.flyteai.io and press **Start booking**.
 2. Press **Continue as demo traveller**. No account needed. This is one shared
    demo account: everyone trying Flyte Pal sees the same chats and trips, so
    don't type anything private.
-3. Ask for a trip, for example `Dubai, last week of December, under $900`.
+3. Ask for a trip, for example `Chicago to Dubai, last week of December`.
    Watch the agent search, then press **Book this flight** and **Yes, confirm**.
+   If the agent takes you straight to payment, continue with PayPal.
 4. Pay with the PayPal button and log in with the PayPal sandbox buyer:
    - Email: `sb-mvh6f53707432@personal.example.com`
    - Password: in the Devpost testing instructions
@@ -33,7 +34,7 @@ get one clear fare card, confirm, and pay with PayPal.
 ## Run it in 60 seconds (mock mode, no keys)
 
 ```bash
-git clone <this repo> flyte-pal
+git clone https://github.com/ebrahim575/flyte-pal.git
 cd flyte-pal
 npm install
 npm run dev
@@ -45,7 +46,7 @@ configured, Flyte Pal runs on a built-in mock backend: the same streaming
 conversation, fare cards and booking flow, with canned fares and a simulated
 checkout in place of the PayPal buttons. The header shows **Mock mode**.
 
-Try: `Dubai, last week of December, under $900`, then **Book this flight**,
+Try: `Chicago to Dubai, last week of December`, then **Book this flight**,
 then **Yes, confirm**, then approve the payment and open **Your trips**.
 
 ## Live mode
