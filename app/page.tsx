@@ -33,6 +33,14 @@ export default function Home() {
               <source src="/videos/flyte-pal-demo.mp4" type="video/mp4" />
               <a href="/videos/flyte-pal-demo.mp4">Download the demo video</a>
             </video>
+            <div className="mt-4 flex flex-wrap gap-x-6 gap-y-3 text-sm">
+              <a href="/videos/flyte-pal-phone-demo.mp4" className="text-pal-text underline underline-offset-4">
+                Watch the phone demo
+              </a>
+              <a href="/videos/flyte-pal-teaser.mp4" className="text-pal-text underline underline-offset-4">
+                Watch the vertical teaser
+              </a>
+            </div>
           </section>
 
           <section className="mx-auto w-full max-w-6xl px-4 pb-24 sm:px-6">
