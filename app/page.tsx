@@ -35,10 +35,11 @@ export default function Home() {
             </video>
             <div className="mt-6 grid gap-6 md:grid-cols-2">
               {[
+                { name: "The product film", file: "flyte-pal-product-film", duration: "0:42", label: "Just say it" },
                 { name: "The phone demo", file: "flyte-pal-phone-demo", duration: "1:17", label: "A closer look" },
                 { name: "The short version", file: "flyte-pal-teaser", duration: "0:51", label: "In under a minute" },
               ].map((film) => (
-                <article key={film.file} className="overflow-hidden rounded-3xl border border-hairline bg-card/85 shadow-xl shadow-flyte/5">
+                <article key={film.file} className={`overflow-hidden rounded-3xl border border-hairline bg-card/85 shadow-xl shadow-flyte/5 ${film.file === "flyte-pal-product-film" ? "md:col-span-2" : ""}`}>
                   <div className="flex items-end justify-between gap-4 p-6">
                     <div>
                       <p className="mb-2 text-xs font-medium uppercase tracking-[0.16em] text-flyte-text">{film.label}</p>
