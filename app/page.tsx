@@ -33,13 +33,25 @@ export default function Home() {
               <source src="/videos/flyte-pal-demo.mp4" type="video/mp4" />
               <a href="/videos/flyte-pal-demo.mp4">Download the demo video</a>
             </video>
-            <div className="mt-4 flex flex-wrap gap-x-6 gap-y-3 text-sm">
-              <a href="/videos/flyte-pal-phone-demo.mp4" className="text-pal-text underline underline-offset-4">
-                Watch the phone demo
-              </a>
-              <a href="/videos/flyte-pal-teaser.mp4" className="text-pal-text underline underline-offset-4">
-                Watch the vertical teaser
-              </a>
+            <div className="mt-6 grid gap-6 md:grid-cols-2">
+              {[
+                { name: "The phone demo", file: "flyte-pal-phone-demo", duration: "1:17", label: "A closer look" },
+                { name: "The short version", file: "flyte-pal-teaser", duration: "0:51", label: "In under a minute" },
+              ].map((film) => (
+                <article key={film.file} className="overflow-hidden rounded-3xl border border-hairline bg-card/85 shadow-xl shadow-flyte/5">
+                  <div className="flex items-end justify-between gap-4 p-6">
+                    <div>
+                      <p className="mb-2 text-xs font-medium uppercase tracking-[0.16em] text-flyte-text">{film.label}</p>
+                      <h3 className="text-xl font-semibold tracking-tight">{film.name}</h3>
+                    </div>
+                    <span className="font-mono text-xs text-muted-foreground">{film.duration}</span>
+                  </div>
+                  <video controls playsInline preload="none" poster={`/videos/${film.file}.jpg`} aria-label={film.name} className="aspect-video w-full bg-black object-contain">
+                    <source src={`/videos/${film.file}.mp4`} type="video/mp4" />
+                    <a href={`/videos/${film.file}.mp4`}>Watch {film.name.toLowerCase()}</a>
+                  </video>
+                </article>
+              ))}
             </div>
           </section>
 

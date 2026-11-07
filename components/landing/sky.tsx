@@ -15,8 +15,13 @@ const STARS = Array.from({ length: 46 }, (_, i) => ({
 
 export function Sky() {
   return (
-    <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-      <div className="sky-layer loop-sky absolute -inset-[20%]" />
+    <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+      <div className="sky-layer loop-sky absolute -inset-x-[20%] -top-32 h-[140svh]" />
+      <svg className="sky-routes absolute inset-x-0 top-0 h-[110svh] w-full" viewBox="0 0 1440 1000" preserveAspectRatio="xMidYMid slice" fill="none">
+        {[0, 1, 2, 3, 4].map((i) => (
+          <path key={i} d={`M -200 ${760 + i * 48} C 250 ${160 + i * 65}, 900 ${1150 + i * 38}, 1660 ${100 + i * 55}`} />
+        ))}
+      </svg>
       <div className="absolute inset-0 hidden dark:block">
         {STARS.map((s, i) => (
           <span
