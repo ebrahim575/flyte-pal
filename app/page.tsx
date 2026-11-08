@@ -7,6 +7,11 @@ import { Sky } from "@/components/landing/sky"
 import { Story } from "@/components/landing/story"
 import { Why } from "@/components/landing/why"
 
+// Videos are served from a CDN, not from this repo or the app host. Unset:
+// the "Watch Flyte Pal" section is left out (a fresh clone has no media).
+const MEDIA_URL = (process.env.NEXT_PUBLIC_MEDIA_URL ?? "").replace(/\/+$/, "")
+const media = (file: string) => `${MEDIA_URL}/videos/${file}`
+
 export default function Home() {
   return (
     <ViewTransition enter="page-enter" exit="page-exit" default="none">
@@ -18,7 +23,7 @@ export default function Home() {
 
           <Story />
 
-          <section aria-labelledby="demo-title" className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6">
+          {MEDIA_URL && <section aria-labelledby="demo-title" className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6">
             <h2 id="demo-title" className="text-[clamp(1.7rem,3.4vw,2.4rem)] font-semibold tracking-[-0.03em]">
               Watch Flyte Pal
             </h2>
@@ -26,12 +31,12 @@ export default function Home() {
               controls
               playsInline
               preload="none"
-              poster="/videos/flyte-pal-demo.jpg"
+              poster={media("flyte-pal-demo.jpg")}
               aria-label="Flyte Pal demo: live flight search and PayPal sandbox checkout"
               className="mt-6 aspect-video w-full rounded-3xl border border-hairline bg-card"
             >
-              <source src="/videos/flyte-pal-demo.mp4" type="video/mp4" />
-              <a href="/videos/flyte-pal-demo.mp4">Download the demo video</a>
+              <source src={media("flyte-pal-demo.mp4")} type="video/mp4" />
+              <a href={media("flyte-pal-demo.mp4")}>Download the demo video</a>
             </video>
             <div className="mt-6 grid gap-6 md:grid-cols-2">
               {[
@@ -47,14 +52,14 @@ export default function Home() {
                     </div>
                     <span className="font-mono text-xs text-muted-foreground">{film.duration}</span>
                   </div>
-                  <video controls playsInline preload="none" poster={`/videos/${film.file}.jpg`} aria-label={film.name} className="aspect-video w-full bg-black object-contain">
-                    <source src={`/videos/${film.file}.mp4`} type="video/mp4" />
-                    <a href={`/videos/${film.file}.mp4`}>Watch {film.name.toLowerCase()}</a>
+                  <video controls playsInline preload="none" poster={media(`${film.file}.jpg`)} aria-label={film.name} className="aspect-video w-full bg-black object-contain">
+                    <source src={media(`${film.file}.mp4`)} type="video/mp4" />
+                    <a href={media(`${film.file}.mp4`)}>Watch {film.name.toLowerCase()}</a>
                   </video>
                 </article>
               ))}
             </div>
-          </section>
+          </section>}
 
           <section className="mx-auto w-full max-w-6xl px-4 pb-24 sm:px-6">
             <div className="reveal-on-scroll float-card mt-12 flex flex-col items-start gap-6 rounded-3xl p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
